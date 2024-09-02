@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
@@ -11,9 +12,9 @@ public class Main {
     static char[][] field = new char[lines][colum];
     static int[] n = new int[lines];
 
-    static int totalEnemys = 11;
     static int attempts = 0;
-    static int enemys = totalEnemys;
+    static int eCount = 0;
+    static int enemys = 90;
 
     static char[][] target = {
 //            A   B   C   D   E   F
@@ -35,28 +36,9 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        System.out.println();
-        System.out.println("          By Vinicius Santos Ribeiro | 2024           ");
-        System.out.println("------------- Batalha Naval com Matrizes -------------");
-        System.out.println();
-        System.out.println("Temos 11 Inimigos para serem abatidos!");
-        System.out.println();
-        System.out.println(" 0  | "+ columA +" | "+ columB +" | "+ columC +" | "+columD+" | "+ columE +" | "+ columF +" | ");
+        createField();
 
-        for (int i = 0; i < lines; i++) {
-            n[i] = i + 1;
-
-            System.out.print(" " + n[i] + "  |");
-
-            for (int j = 0; j < colum; j++) {
-                field[i][j] = ' ';
-                System.out.print(" " + field[i][j] + " |");
-            }
-            System.out.println();
-        }
-
-        System.out.println();
-        System.out.println("ⓘ Utilize as coordenadas corretamente. Ex:(B3, A7, D2)");
+        msgStartGame();
 
         while(true){
             System.out.println();
@@ -146,22 +128,47 @@ public class Main {
             if(enemys <= 0){
                 msgEndGame();
                 System.out.println("Você derrotou os seus inimigos e saiu vitorioso!");
-                ShowField();
+                showField();
                 System.out.println();
                 System.out.println("Total de Tentativas: " + attempts);
-                System.out.println("Inimigos derrotados: " + totalEnemys);
+                System.out.println("Inimigos derrotados: " + eCount);
                 break;
             }
 
-            ShowField();
+            showField();
         }
 
     }
 
-    public static void ShowField(){
-        System.out.println();
-        System.out.println(" 0  | "+ columA +" | "+ columB +" | "+ columC +" | "+columD+" | "+ columE +" | "+ columF +" | ");
+    public static void createField(){
+        Random random = new Random();
+        int possCount = 0;
+        int randomPos = 0;
 
+        for (int i = 0; i < (lines); i++) {
+            for (int j = 0; j < (colum); j++) {
+                possCount += 1;
+                if(possCount <= lines * colum){
+                    randomPos = random.nextInt(0,5);
+                    if(randomPos == 0){
+                        target[i][j] = '-';
+                        eCount++;
+                    }else{
+                        target[i][j] = '+';
+                    }
+                }else{
+                    target[i][j] = '+';
+                }
+            }
+        }
+
+        enemys = eCount;
+    }
+
+    public static void showField(){
+        System.out.println();
+
+        System.out.println(" 0  | "+ columA +" | "+ columB +" | "+ columC +" | "+columD+" | "+ columE +" | "+ columF +" | ");
         for (int i = 0; i < lines; i++) {
             n[i] = i + 1;
 
@@ -174,12 +181,37 @@ public class Main {
         }
     }
 
+    public static void clearField(){
+        System.out.println(" 0  | "+ columA +" | "+ columB +" | "+ columC +" | "+columD+" | "+ columE +" | "+ columF +" | ");
+        for (int i = 0; i < lines; i++) {
+            n[i] = i + 1;
+
+            System.out.print(" " + n[i] + "  |");
+
+            for (int j = 0; j < colum; j++) {
+                field[i][j] = ' ';
+                System.out.print(" " + field[i][j] + " |");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void msgStartGame(){
+        System.out.println();
+        System.out.println("          By Vinicius Santos Ribeiro | 2024           ");
+        System.out.println("------------- Batalha Naval com Matrizes -------------");
+        System.out.println();
+        System.out.println("Temos " + eCount + " Inimigos para serem abatidos!");
+        System.out.println();
+        clearField();
+        System.out.println();
+        System.out.println("ⓘ Utilize as coordenadas corretamente. Ex:(B3, A7, D2)");
+    }
+
     public static void msgEndGame(){
         System.out.println();
         System.out.println("   █▀▀ █ █▀▄▀█   █▀▄ █▀▀     █ █▀█ █▀▀ █▀█   ");
         System.out.println("   █▀  █ █ ▀ █   █▄▀ ██▄   █▄█ █▄█ █▄█ █▄█   ");
         System.out.println();
     }
-
-
 }
