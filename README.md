@@ -2,7 +2,7 @@
 
 ## Descrição
 
-"Batalha Naval com Matrizes em Java!" é um jogo simples desenvolvido em Java onde matrizes são usadas para criar um campo com coordenadas. O objetivo do jogo é atirar cegas nos inimigos e tentar a sorte para encontrar todos eles. Este projeto demonstra a utilização de matrizes e a lógica básica de jogos em Java.
+Batalha Naval é um jogo simples que foi desenvolvido em Java onde matrizes são usadas para criar um campo com coordenadas. O objetivo do jogo é atirar cegas nos inimigos e tentar a sorte para encontrar todos eles. Este projeto demonstra a utilização de matrizes e a lógica básica de jogos em Java.
 
 ## Funcionalidades
 
