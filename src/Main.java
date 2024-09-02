@@ -2,20 +2,28 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
+
     static char columA = 'A',  columB = 'B',  columC = 'C',  columD = 'D', columE = 'E', columF = 'F';
+
     static int lines = 7;
     static int colum = 6;
-    static char[][] camp = new char[lines][colum];
+
+    static char[][] field = new char[lines][colum];
     static int[] n = new int[lines];
-    static int boats = 11;
+
+    static int totalEnemys = 11;
+    static int attempts = 0;
+    static int enemys = totalEnemys;
+
     static char[][] target = {
-            {'-','+','+','+','-','+'},
-            {'-','+','+','+','+','-'},
-            {'+','+','-','+','+','-'},
-            {'+','+',' ','+','+','+'},
-            {'+','+','-','-','-','+'},
-            {'+','-','+','+','+','+'},
-            {'-','+','+','+','+','+'}
+//            A   B   C   D   E   F
+/* 1 */     {'-','+','+','+','-','+'},
+/* 2 */     {'-','+','+','+','+','-'},
+/* 3 */     {'+','+','-','+','+','-'},
+/* 4 */     {'+','+','+','+','+','+'},
+/* 5 */     {'+','+','-','-','-','+'},
+/* 6 */     {'+','-','+','+','+','+'},
+/* 7 */     {'-','+','+','+','+','+'}
     };
 
     static int[][] columsIntX = {
@@ -41,8 +49,8 @@ public class Main {
             System.out.print(" " + n[i] + "  |");
 
             for (int j = 0; j < colum; j++) {
-                camp[i][j] = ' ';
-                System.out.print(" " + camp[i][j] + " |");
+                field[i][j] = ' ';
+                System.out.print(" " + field[i][j] + " |");
             }
             System.out.println();
         }
@@ -115,14 +123,16 @@ public class Main {
 
             System.out.println();
 
-            camp[columY][x] = '-';
+            field[columY][x] = '-';
+            attempts += 1;
             boolean hit = false;
 
-            if(camp[columY][x] == target[columY][x]){
-                if(camp[columY][x] == 'X'){
-                    camp[columY][x] = 'X';
+            if(field[columY][x] == target[columY][x]){
+                if(field[columY][x] == 'X'){
+                    field[columY][x] = 'X';
                 }else{
-                    camp[columY][x] = 'X';
+                    field[columY][x] = 'X';
+                    enemys -= 1;
                     hit = true;
                 }
             }
@@ -133,12 +143,22 @@ public class Main {
                 System.out.println("Não acertou nenhum navio! "+ columX + " | " + y);
             }
 
-            ShowCamp();
+            if(enemys <= 0){
+                msgEndGame();
+                System.out.println("Você derrotou os seus inimigos e saiu vitorioso!");
+                ShowField();
+                System.out.println();
+                System.out.println("Total de Tentativas: " + attempts);
+                System.out.println("Inimigos derrotados: " + totalEnemys);
+                break;
+            }
+
+            ShowField();
         }
 
     }
 
-    public static void ShowCamp(){
+    public static void ShowField(){
         System.out.println();
         System.out.println(" 0  | "+ columA +" | "+ columB +" | "+ columC +" | "+columD+" | "+ columE +" | "+ columF +" | ");
 
@@ -148,10 +168,18 @@ public class Main {
             System.out.print(" " + n[i] + "  |");
 
             for (int j = 0; j < colum; j++) {
-                System.out.print(" " + camp[i][j] + " |");
+                System.out.print(" " + field[i][j] + " |");
             }
             System.out.println();
         }
     }
+
+    public static void msgEndGame(){
+        System.out.println();
+        System.out.println("   █▀▀ █ █▀▄▀█   █▀▄ █▀▀     █ █▀█ █▀▀ █▀█   ");
+        System.out.println("   █▀  █ █ ▀ █   █▄▀ ██▄   █▄█ █▄█ █▄█ █▄█   ");
+        System.out.println();
+    }
+
 
 }
