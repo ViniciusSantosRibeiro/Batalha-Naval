@@ -28,6 +28,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println();
+        System.out.println("          By Vinicius Santos Ribeiro | 2024           ");
         System.out.println("------------- Batalha Naval com Matrizes -------------");
         System.out.println();
         System.out.println("Temos 11 Inimigos para serem abatidos!");
