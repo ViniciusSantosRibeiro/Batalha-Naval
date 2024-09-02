@@ -8,10 +8,3 @@
 
 - **Criação do Campo de Jogo:** Utiliza matrizes para representar o campo de batalha.
 - **Atirar:** O jogador pode atirar em coordenadas para tentar localizar os barcos inimigos.
-
-## Como Executar o Projeto
-
-1. **Clone o Repositório:**
-
-   ```bash
-   git clone https://github.com/seu-usuario/batalha-naval-java.git
