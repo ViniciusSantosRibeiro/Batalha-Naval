@@ -110,7 +110,8 @@ public class Main {
             boolean hit = false;
 
             if(field[columY][x] == target[columY][x]){
-                if(field[columY][x] == 'X'){
+                if(field[columY][x] == '-'){
+                    System.out.println("Você já escolheu essa coordenada!");
                     field[columY][x] = 'X';
                 }else{
                     field[columY][x] = 'X';
@@ -149,7 +150,7 @@ public class Main {
             for (int j = 0; j < (colum); j++) {
                 possCount += 1;
                 if(possCount <= lines * colum){
-                    randomPos = random.nextInt(0,5);
+                    randomPos = random.nextInt(0, 4);
                     if(randomPos == 0){
                         target[i][j] = '-';
                         eCount++;
